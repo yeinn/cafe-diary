@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>취향 아카이브 · 카페일기</title>
+  <meta name="description" content="쌓인 카페 기록으로 자주 간 카페, 즐겨 마신 음료, 함께한 책을 모아 보는 취향 아카이브.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="taste-page">
+
+  <!-- ===== 상단 헤더 (PC) ===== -->
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <i data-icon="logo" class="logo"></i>
+      <span class="brand-name">카페일기</span>
+    </a>
+    <nav class="main-nav" aria-label="주 메뉴">
+      <a class="nav-item" href="index.html"><i data-icon="note"></i>기록</a>
+      <a class="nav-item is-active" href="taste.html" aria-current="page"><i data-icon="coffee"></i>취향</a>
+    </nav>
+    <a class="btn-write" href="write.html"><i data-icon="pencil" class="icon-18"></i>기록하기</a>
+  </header>
+
+  <main class="column">
+    <div class="taste-top">
+      <h1>취향 아카이브</h1>
+      <div class="filters" role="group" aria-label="기간">
+        <button type="button" class="chip" data-range="all">전체</button>
+        <button type="button" class="chip" data-range="year">올해</button>
+        <button type="button" class="chip is-active" data-range="month">이번 달</button>
+      </div>
+    </div>
+
+    <!-- 집계 내용은 js/taste.js가 채워 넣어요 -->
+    <div class="taste-body" id="tasteBody"></div>
+  </main>
+
+  <!-- ===== 모바일 탭바 · 기록하기 버튼 ===== -->
+  <a class="fab" href="write.html"><i data-icon="pencil"></i>기록하기</a>
+  <nav class="tabbar" aria-label="주 메뉴">
+    <a class="tab-item" href="index.html"><i data-icon="note"></i>기록</a>
+    <a class="tab-item is-active" href="taste.html"><i data-icon="coffee"></i>취향</a>
+  </nav>
+
+  <script src="js/icons.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/sample-photos.js"></script>
+  <script src="js/sample-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/illust.js"></script>
+  <script src="js/taste.js"></script>
+</body>
+</html>

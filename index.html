@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>카페일기</title>
+  <meta name="description" content="카페에서 보낸 시간과 하루를 달력으로 모아 보는 개인 카페 기록 아카이브.">
+
+  <!-- 글꼴: 나눔명조 · Pretendard(숫자) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-home">
+
+  <!-- ===== 상단 헤더 (PC) ===== -->
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <i data-icon="logo" class="logo"></i>
+      <span class="brand-name">카페일기</span>
+    </a>
+    <nav class="main-nav" aria-label="주 메뉴">
+      <a class="nav-item is-active" href="index.html" aria-current="page"><i data-icon="note"></i>기록</a>
+      <a class="nav-item" href="taste.html"><i data-icon="coffee"></i>취향</a>
+    </nav>
+    <a class="btn-write" href="write.html"><i data-icon="pencil" class="icon-18"></i>기록하기</a>
+  </header>
+
+  <main class="home">
+
+    <!-- ===== 캘린더 ===== -->
+    <section class="calendar" aria-label="달력">
+      <div class="month-bar">
+        <h1 class="month-title" id="periodTitle">2026년 10월</h1>
+        <div class="controls">
+          <div class="segmented" role="group" aria-label="보기 방식">
+            <button type="button" data-view="month" class="is-active">월</button>
+            <button type="button" data-view="week">주</button>
+          </div>
+          <button type="button" class="icon-btn" id="prevBtn" aria-label="이전"><i data-icon="chevron-left" class="icon-22"></i></button>
+          <button type="button" class="icon-btn" id="nextBtn" aria-label="다음"><i data-icon="chevron-right" class="icon-22"></i></button>
+        </div>
+      </div>
+
+      <div class="weekdays" aria-hidden="true">
+        <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
+      </div>
+      <!-- 날짜 칸은 js/home.js가 채워 넣어요 -->
+      <div class="days" id="days"></div>
+    </section>
+
+    <!-- ===== 사이드 ===== -->
+    <aside class="side">
+      <!-- 오늘의 기록 (선택한 날짜) -->
+      <section class="today-panel">
+        <h2 class="section-title" id="dayPanelTitle">오늘의 기록</h2>
+        <div id="dayPanel"></div>
+      </section>
+
+      <!-- 모든 기록 / 이번 주 기록 -->
+      <section class="all-records">
+        <div class="list-head">
+          <h2 class="section-title" id="listTitle">모든 기록</h2>
+          <button type="button" class="sort-btn" id="sortBtn">
+            <span id="sortLabel">최신순</span><i data-icon="chevron-down" class="icon-14"></i>
+          </button>
+          <span class="list-meta" id="listMeta" hidden></span>
+        </div>
+        <ul class="record-list" id="recordList"></ul>
+      </section>
+    </aside>
+  </main>
+
+  <!-- ===== 바텀시트 (모바일에서 날짜를 누르면 열림) ===== -->
+  <div class="sheet" id="sheet" hidden>
+    <div class="sheet-dim" data-close></div>
+    <div class="sheet-panel" role="dialog" aria-modal="true" aria-label="선택한 날의 기록">
+      <div class="sheet-handle"></div>
+      <button type="button" class="sheet-close" data-close aria-label="닫기"><i data-icon="close" class="icon-18"></i></button>
+      <div id="sheetContent"></div>
+    </div>
+  </div>
+
+  <!-- ===== 모바일 탭바 · 기록하기 버튼 ===== -->
+  <a class="fab" href="write.html"><i data-icon="pencil"></i>기록하기</a>
+  <nav class="tabbar" aria-label="주 메뉴">
+    <a class="tab-item is-active" href="index.html"><i data-icon="note"></i>기록</a>
+    <a class="tab-item" href="taste.html"><i data-icon="coffee"></i>취향</a>
+  </nav>
+
+  <script src="js/icons.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/sample-photos.js"></script>
+  <script src="js/sample-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

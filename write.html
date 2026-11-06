@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>새 기록 · 카페일기</title>
+  <meta name="description" content="방문한 카페의 음료, 사진, 읽은 책, 오늘의 글을 한 번에 기록하는 화면.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-sub page-write">
+
+  <!-- ===== 상단 헤더 (PC) ===== -->
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <i data-icon="logo" class="logo"></i>
+      <span class="brand-name">카페일기</span>
+    </a>
+    <nav class="main-nav" aria-label="주 메뉴">
+      <a class="nav-item is-active" href="index.html"><i data-icon="note"></i>기록</a>
+      <a class="nav-item" href="taste.html"><i data-icon="coffee"></i>취향</a>
+    </nav>
+    <a class="btn-write" href="write.html"><i data-icon="pencil" class="icon-18"></i>기록하기</a>
+  </header>
+
+  <main class="column">
+    <form id="recordForm" novalidate>
+
+      <!-- 페이지 헤더 -->
+      <div class="page-header">
+        <div class="page-header-side">
+          <button type="button" class="icon-btn" id="closeBtn" aria-label="닫기"><i data-icon="close"></i></button>
+        </div>
+        <h1 class="page-title" id="pageTitle">새 기록</h1>
+        <div class="page-header-side"></div>
+      </div>
+
+      <div class="form-body">
+
+        <!-- 날짜 · 날씨 -->
+        <div class="date-row">
+          <label class="date-picker">
+            <span id="dateLabel">10월 30일 금요일</span>
+            <i data-icon="chevron-down" class="icon-16"></i>
+            <input type="date" id="dateInput" aria-label="방문 날짜">
+          </label>
+          <div class="weather" role="group" aria-label="날씨">
+            <button type="button" class="weather-btn" data-weather="sunny" aria-label="맑음"><i data-icon="sunny"></i></button>
+            <button type="button" class="weather-btn" data-weather="cloud" aria-label="흐림"><i data-icon="cloud"></i></button>
+            <button type="button" class="weather-btn" data-weather="rain"  aria-label="비"><i data-icon="rain"></i></button>
+            <button type="button" class="weather-btn" data-weather="snow"  aria-label="눈"><i data-icon="snow"></i></button>
+          </div>
+        </div>
+
+        <!-- ===== 짧은 기록 (필수) ===== -->
+        <section class="short-record">
+          <div class="block-title">
+            <h2>짧은 기록</h2>
+            <small>이것만 채워도 저장할 수 있어요.</small>
+          </div>
+
+          <div class="cafe-field">
+            <input type="text" class="cafe-input" id="cafeInput" placeholder="어느 카페에 왔나요?" maxlength="40" autocomplete="off" list="cafeList">
+            <datalist id="cafeList"></datalist>
+            <p class="visit-hint" id="visitHint"></p>
+          </div>
+
+          <div class="menu-field">
+            <div class="menu-inputs">
+              <input type="text" class="line-input" id="drinkInput" placeholder="마신 음료" maxlength="40">
+              <input type="text" class="line-input" id="dessertInput" placeholder="먹은 디저트" maxlength="40">
+            </div>
+            <p class="hint" id="menuHint">음료와 디저트 중 하나 이상 적어 주세요</p>
+          </div>
+
+          <div>
+            <button type="button" class="chip chip-revisit" id="revisitChip" aria-pressed="false">
+              <i data-icon="heart-line" class="icon-14 heart-off"></i>
+              <i data-icon="heart" class="icon-14 heart-on"></i>다시 가고 싶은 카페
+            </button>
+          </div>
+        </section>
+
+        <!-- ===== 더 자세히 기록하기 (선택) ===== -->
+        <button type="button" class="detail-toggle" id="detailToggle" aria-expanded="false" aria-controls="detailFields">
+          <span class="detail-toggle-text">
+            <strong>더 자세히 기록하기</strong>
+            <small>사진 · 책 · 인상 깊은 문장 · 오늘의 글쓰기 · 한줄평</small>
+          </span>
+          <span class="toggle-circle"><i data-icon="chevron-down"></i></span>
+        </button>
+
+        <div class="detail-fields" id="detailFields" hidden>
+
+          <!-- 사진 -->
+          <section>
+            <div class="field-title">
+              <h3>사진</h3><small>최대 3장</small>
+            </div>
+            <div class="photo-grid" id="photoGrid"></div>
+            <input type="file" id="photoInput" accept="image/*" multiple hidden>
+          </section>
+
+          <!-- 오늘 함께한 책 -->
+          <section class="book-block">
+            <h3 class="book-block-title"><i data-icon="book" class="icon-18"></i>오늘 함께한 책</h3>
+            <div class="book-block-body">
+              <button type="button" class="book-cover-btn" id="coverBtn" aria-label="책 표지 사진 추가">
+                <i data-icon="plus"></i>
+              </button>
+              <input type="file" id="coverInput" accept="image/*" hidden>
+              <div class="book-inputs">
+                <input type="text" class="line-input" id="bookTitleInput" placeholder="책 제목" maxlength="60">
+                <input type="text" class="line-input" id="bookPagesInput" placeholder="읽은 페이지 · 예: 32 – 58쪽" maxlength="30">
+              </div>
+            </div>
+          </section>
+
+          <!-- 인상 깊은 문장 -->
+          <section>
+            <div class="field-title"><h3>인상 깊은 문장</h3></div>
+            <div class="quote-wrap">
+              <div class="quote-card">
+                <i data-icon="quote"></i>
+                <textarea class="quote-text" id="quoteInput" rows="2"
+                  placeholder="오늘 하루 동안 와닿았던 문장이 있다면 기록해 보세요."></textarea>
+              </div>
+            </div>
+          </section>
+
+          <!-- 오늘의 글쓰기 -->
+          <section>
+            <div class="field-title"><h3>오늘의 글쓰기</h3></div>
+            <textarea class="lined" id="diaryInput" rows="5" placeholder="오늘 하루, 어떤 생각을 했나요?"></textarea>
+          </section>
+
+          <!-- 한줄평 -->
+          <section>
+            <div class="field-title">
+              <h3>한줄평</h3>
+              <small>아이콘을 누르면 바꿀 수 있어요</small>
+              <button type="button" class="add-note-btn" id="addNoteBtn"><i data-icon="plus" class="icon-14"></i>추가하기</button>
+            </div>
+            <div class="postit-list" id="noteList"></div>
+          </section>
+        </div>
+      </div>
+
+      <!-- 저장 버튼 -->
+      <div class="bottom-bar">
+        <button type="submit" class="btn btn-primary" id="saveBtn" disabled>저장하기</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="js/icons.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/sample-photos.js"></script>
+  <script src="js/sample-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/write.js"></script>
+</body>
+</html>

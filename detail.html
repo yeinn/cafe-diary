@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>이 날의 기록 · 카페일기</title>
+  <meta name="description" content="카페 기록 한 건의 사진, 메뉴, 책, 인상 깊은 문장, 글, 한줄평을 다시 보는 화면.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-sub page-detail">
+
+  <!-- ===== 상단 헤더 (PC) ===== -->
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <i data-icon="logo" class="logo"></i>
+      <span class="brand-name">카페일기</span>
+    </a>
+    <nav class="main-nav" aria-label="주 메뉴">
+      <a class="nav-item is-active" href="index.html"><i data-icon="note"></i>기록</a>
+      <a class="nav-item" href="taste.html"><i data-icon="coffee"></i>취향</a>
+    </nav>
+    <a class="btn-write" href="write.html"><i data-icon="pencil" class="icon-18"></i>기록하기</a>
+  </header>
+
+  <main class="column">
+    <!-- 페이지 헤더 -->
+    <div class="page-header">
+      <div class="page-header-side">
+        <button type="button" class="icon-btn" id="backBtn" aria-label="뒤로"><i data-icon="back"></i></button>
+      </div>
+      <h1 class="page-title">이 날의 기록</h1>
+      <div class="page-header-side"></div>
+    </div>
+
+    <!-- 기록 내용은 js/detail.js가 채워 넣어요 -->
+    <div id="detail"></div>
+  </main>
+
+  <script src="js/icons.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/sample-photos.js"></script>
+  <script src="js/sample-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/detail.js"></script>
+</body>
+</html>
